@@ -1,36 +1,54 @@
 {% extends "base.html" %}
 
-{% block head %} {% endblock %}
-
 {% block content %}
-	<form method="post" action="/">
+	<form method="get" action="/">
 	  	{{form}}
-	  	{% csrf_token %}
 	  <button type="submit" class="btn btn-default">Search</button>
 	</form>
 	{% if response %}
-		{% if response.response.venues %}
-			<table>
-				<thead> 
-					<tr> 
-						<th>Name:</th>
-						<th>Phone Number:</th>
-						<th>Checkin Count:</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for item in response.response.venues %}
-					<tr>
-						<td>{{ item.name }}</td>
-						<td>{{ item.contact.phone }}</td>
-						<td>{{ item.stats.checkinsCount }}</td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		{% else %}
-			<div>No any result found !</div>
-		{% endif %}
+		<div class="row">
+			<div class="col-md-8">
+				{% if response.response.venues %}
+					<table class="table">
+						<thead> 
+							<tr> 
+								<th>Name:</th>
+								<th>Phone Number:</th>
+								<th>Checkin Count:</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in response.response.venues %}
+							<tr>
+								<td>{{ item.name }}</td>
+								<td>{{ item.contact.phone }}</td>
+								<td>{{ item.stats.checkinsCount }}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% else %}
+					<div>No any result found !</div>
+				{% endif %}	
+			</div>
+
+			<div class="col-md-4">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Search History</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for history_item in history %}
+						<tr>
+							<td><a href="/?query={{history_item.query}}&near={{history_item.near}}">{{ history_item.near }} {{ history_item.query }}</a></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
 	{% endif %}
 {% endblock %}
 

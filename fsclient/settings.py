@@ -122,7 +122,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 CLIENT_ID = None
 CLIENT_SECRET = None
 API_V_PARAM = "20130815"
