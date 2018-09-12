@@ -38,3 +38,4 @@ $ python manage.py runserver
 
 [link test] (www.google.com)
 
+ [GitHub Pages](https://pages.github.com/).
