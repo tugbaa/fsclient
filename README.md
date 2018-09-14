@@ -35,8 +35,3 @@ $ python manage.py runserver
 ## Configuration
 **CLIENT_ID** : Client identifier value. <br />
 **CLIENT_SECRET** : Secret key value for authenticating to API. <br />
-
-
- [GitHub Pages](https://pages.github.com/).
- 
- [Test Link](https://google.com/).
